@@ -255,10 +255,10 @@ export default {
       vm.axios.get(api).then((res) => {
         if (res.status === 200) {
           vm.porkDataList = res.data
+          vm.$refs.sidebar.switchOpen()
           vm.getCurrentPos()
           vm.isFirstTime = false
           vm.isLoading = false
-          vm.$refs.sidebar.switchOpen()
         } else {
           vm.hasError = true
         }
@@ -393,10 +393,10 @@ export default {
     ErrorHandle () {
       this.area = '新店區'
       this.getPorkDataRegion()
-      alert('請允許瀏覽器使用定位服務搜尋附近商店，或依區域手動搜尋')
+      this.$swal({ icon: 'info', text: '請允許瀏覽器使用定位服務搜尋附近商店，或依區域手動搜尋' })
     },
     ErrorHandleAgain () {
-      alert('請允許瀏覽器使用定位服務搜尋附近商店，或依區域手動搜尋')
+      this.$swal({ icon: 'info', text: '請允許瀏覽器使用定位服務搜尋附近商店，或依區域手動搜尋' })
     },
     getNearShop () {
       const vm = this
